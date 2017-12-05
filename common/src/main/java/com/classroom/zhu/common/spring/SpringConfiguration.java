@@ -117,7 +117,7 @@ public class SpringConfiguration {
     public Config config(MongoDbFactory mongoDbFactory)throws IOException {//MongoDbFactory在上面的Bean中造出来
         MongoTemplate template = new MongoTemplate(mongoDbFactory);
         System.out.println("看这里SpringConfiguration.java:120,看一下template:"+template);
-        LOG.info("日志-fanqy:init config bean of {} from {}",name,collection);
+        LOG.info("日志-zhu:init config bean of {} from {}",name,collection);
         return new Config(template,collection,name);  //name传过去与projectName相对
     }
 

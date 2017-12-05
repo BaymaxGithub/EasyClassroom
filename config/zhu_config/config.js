@@ -7,7 +7,7 @@
 /*print("creating user admin");
 db = db.getSiblingDB('admin');
 db.dropUser('admin');
-db.createUser({user: "admin", pwd: "admin", roles: ["root"]});*/
+db.createUser({user: "admin", pwd: "1949", roles: ["root"]});*/
 
 db = db.getSiblingDB('zhu_config');
 print("creating user zhu_config");
@@ -23,8 +23,8 @@ coll.update({name: 'public'}, {
             "apiServerPort" : 80,
             "mongodbHost" : "127.0.0.1",
             "mongodbPort" : 27017,
-            "mongodbUsername" : "zhu_config",
-            "mongodbPassword" : "zhu_config"
+            "mongodbUsername" : "admin",
+            "mongodbPassword" : "1949"
         }
     }
 }, true, false);
