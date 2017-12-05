@@ -1,0 +1,110 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		maven { url 'http://repo.spring.io/plugins-release' }
+		maven { url "https://plugins.gradle.org/m2/" }
+		maven {url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "com.sarhanm:gradle-versioner:2.1.35"
+	}
+}
+plugins {
+	id "com.gorylenko.gradle-git-properties" version "1.4.15"
+	id 'org.springframework.boot' version '1.4.3.RELEASE'
+}
+
+
+subprojects{
+	apply plugin:'java'
+	apply plugin:'org.springframework.boot'
+	apply plugin: 'com.gorylenko.gradle-git-properties'
+
+	group = 'com.classroom.zhu'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	compileJava.options.encoding = 'UTF-8'
+
+	repositories{
+		jcenter()
+		maven { url "http://repo.spring.io/milestone" }
+	}
+
+	dependencies{
+		compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: '*.jar')//依赖该路径下的jar文件
+		testCompile 'junit:junit:4.+'
+		testCompile "org.springframework.boot:spring-boot-starter-test"
+		compile "org.projectlombok:lombok:1.16.+"
+
+		compile "org.springframework.boot:spring-boot-starter"
+		compile "org.springframework.boot:spring-boot-starter-actuator"
+		compile "org.springframework.boot:spring-boot-starter-amqp"
+		compile "org.springframework.boot:spring-boot-starter-data-mongodb"
+		compile "org.springframework.boot:spring-boot-starter-data-redis"
+		compile "org.springframework.boot:spring-boot-devtools"
+
+	}
+
+	//添加一些属性到JAR包的manifest文件中
+	jar.manifest.attributes.put 'Implementation-Version', version
+	jar.manifest.attributes.put 'Implementation-Title', project.name
+
+	bootRun {
+		// support passing -Dsystem.property=value to bootRun task
+		systemProperties = System.properties
+	}
+}
+
+
+//公共模块
+project(':common') {
+	dependencies {
+
+		compile "org.springframework.boot:spring-boot-starter"
+		compile "org.springframework:spring-webmvc"
+		compile 'com.google.guava:guava:20.0'
+		compile 'commons-collections:commons-collections'
+		compile 'org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:0.+'
+		compile 'org.apache.oltu.oauth2:org.apache.oltu.oauth2.authzserver:0.+'
+
+		compile 'org.aspectj:aspectjrt'
+		compile 'org.quartz-scheduler:quartz:2.1.3'
+		compile 'javax.inject:javax.inject:1'
+		compile 'cglib:cglib:2.2.2'
+		compile 'org.apache.commons:commons-lang3:3.3.2'
+		compile 'commons-lang:commons-lang:2.6'
+		compile 'commons-io:commons-io:2.4'
+		compile 'commons-codec:commons-codec:1.+'
+		compile('org.apache.curator:curator-client:2.+') {
+			exclude module: 'slf4j-log4j12'
+			exclude module: 'log4j'
+		}
+		compile('org.apache.curator:curator-recipes:2.+') {
+			exclude module: 'slf4j-log4j12'
+			exclude module: 'log4j'
+		}
+		compile 'org.beanshell:bsh:2.0b5'
+		compile('commons-beanutils:commons-beanutils') {
+			exclude module: 'commons-logging'
+		}
+		compile 'org.springframework.retry:spring-retry'
+		compile 'org.aspectj:aspectjweaver'
+		compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	}
+}
+
+
+project(':easy_classroom') {
+	dependencies {
+		compile project(':common')
+		compile("org.springframework.boot:spring-boot-starter-jetty")
+
+	}
+}
+
+
