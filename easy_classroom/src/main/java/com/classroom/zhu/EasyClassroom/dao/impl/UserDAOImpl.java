@@ -1,10 +1,11 @@
 package com.classroom.zhu.EasyClassroom.dao.impl;
 
-import cn.com.fanqy.common.model.User;
-import cn.com.fanqy.common.service.MongoService;
-import cn.com.fanqy.common.util.DateUtil;
-import cn.com.fanqy.common.util.UpdateUtil;
-import cn.com.fanqy.myblog.dao.UserDAO;
+
+import com.classroom.zhu.EasyClassroom.dao.UserDAO;
+import com.classroom.zhu.common.model.User;
+import com.classroom.zhu.common.service.MongoService;
+import com.classroom.zhu.common.util.DateUtil;
+import com.classroom.zhu.common.util.UpdateUtil;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ import org.springframework.util.Assert;
 
 import java.util.Date;
 
-import static cn.com.fanqy.common.service.Collections.USERS;
+import static com.classroom.zhu.common.service.Collections.USERS;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 

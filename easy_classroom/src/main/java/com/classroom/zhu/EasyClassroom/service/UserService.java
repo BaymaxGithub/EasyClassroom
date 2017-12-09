@@ -1,8 +1,7 @@
 package com.classroom.zhu.EasyClassroom.service;
-
-import cn.com.fanqy.common.model.User;
-import cn.com.fanqy.myblog.dao.UserDAO;
-import cn.com.fanqy.myblog.dto.UserCreateBean;
+import com.classroom.zhu.EasyClassroom.dao.UserDAO;
+import com.classroom.zhu.EasyClassroom.dto.UserCreateBean;
+import com.classroom.zhu.common.model.User;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

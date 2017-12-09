@@ -1,7 +1,7 @@
 package com.classroom.zhu.EasyClassroom.service;
 
-import cn.com.fanqy.myblog.dao.MongoTestDao;
-import cn.com.fanqy.myblog.dto.MongoTestBean;
+import com.classroom.zhu.EasyClassroom.dao.MongoTestDao;
+import com.classroom.zhu.EasyClassroom.dto.MongoTestBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

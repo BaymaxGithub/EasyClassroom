@@ -1,3 +1,4 @@
+package com.classroom.zhu.common.model;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

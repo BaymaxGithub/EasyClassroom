@@ -1,9 +1,9 @@
 package com.classroom.zhu.EasyClassroom.dao.impl;
 
-import cn.com.fanqy.common.model.UserDb;
-import cn.com.fanqy.common.service.Collections;
-import cn.com.fanqy.common.service.MongoService;
-import cn.com.fanqy.myblog.dao.OrgDAO;
+import com.classroom.zhu.EasyClassroom.dao.OrgDAO;
+import com.classroom.zhu.common.model.UserDb;
+import com.classroom.zhu.common.service.Collections;
+import com.classroom.zhu.common.service.MongoService;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

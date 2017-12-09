@@ -1,9 +1,9 @@
 package com.classroom.zhu.EasyClassroom.controller;
 
-import cn.com.fanqy.common.dto.OnlyResultDTO;
-import cn.com.fanqy.myblog.dao.MongoTestDao;
-import cn.com.fanqy.myblog.dto.MongoTestBean;
-import cn.com.fanqy.myblog.service.MongoTestService;
+import com.classroom.zhu.EasyClassroom.dao.MongoTestDao;
+import com.classroom.zhu.EasyClassroom.dto.MongoTestBean;
+import com.classroom.zhu.EasyClassroom.service.MongoTestService;
+import com.classroom.zhu.common.dto.OnlyResultDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

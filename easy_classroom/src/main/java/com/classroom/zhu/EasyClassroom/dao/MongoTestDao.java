@@ -1,6 +1,7 @@
 package com.classroom.zhu.EasyClassroom.dao;
 
-import cn.com.fanqy.myblog.dto.MongoTestBean;
+
+import com.classroom.zhu.EasyClassroom.dto.MongoTestBean;
 
 /**
  * Created by 12801 on 2017/8/13.

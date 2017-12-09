@@ -1,12 +1,12 @@
 package com.classroom.zhu.EasyClassroom.controller;
 
-import cn.com.fanqy.common.dto.OnlyResultDTO;
-import cn.com.fanqy.common.exception.ErrorCode;
-import cn.com.fanqy.common.exception.ErrorCodeException;
-import cn.com.fanqy.myblog.dao.OrgDAO;
-import cn.com.fanqy.myblog.dao.UserDAO;
-import cn.com.fanqy.myblog.dto.UserCreateBean;
-import cn.com.fanqy.myblog.service.UserService;
+import com.classroom.zhu.EasyClassroom.dao.OrgDAO;
+import com.classroom.zhu.EasyClassroom.dao.UserDAO;
+import com.classroom.zhu.EasyClassroom.dto.UserCreateBean;
+import com.classroom.zhu.EasyClassroom.service.UserService;
+import com.classroom.zhu.common.dto.OnlyResultDTO;
+import com.classroom.zhu.common.exception.ErrorCode;
+import com.classroom.zhu.common.exception.ErrorCodeException;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

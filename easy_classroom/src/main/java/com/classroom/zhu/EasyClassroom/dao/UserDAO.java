@@ -1,6 +1,6 @@
 package com.classroom.zhu.EasyClassroom.dao;
 
-import cn.com.fanqy.common.model.User;
+import com.classroom.zhu.common.model.User;
 import org.bson.types.ObjectId;
 
 /**
