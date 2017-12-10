@@ -1,6 +1,5 @@
 package com.classroom.zhu.EasyClassroom.dao.impl;
 
-
 import com.classroom.zhu.EasyClassroom.dao.UserDAO;
 import com.classroom.zhu.common.model.User;
 import com.classroom.zhu.common.service.MongoService;
@@ -35,8 +34,7 @@ public class UserDAOImpl extends MongoService implements UserDAO {
     //1
     @Override
     public boolean existsUser(ObjectId oId, String field, Object value){
-        Assert.notNull(field);
-        Assert.notNull(value);
+
         Query query = new Query();
         MongoTemplate template = factory.getMongoTemplateByOid(oId);
         query.addCriteria(Criteria.where(field).is(value));
@@ -52,8 +50,7 @@ public class UserDAOImpl extends MongoService implements UserDAO {
     //1//这里考虑如何占个位
     @Override
     public ObjectId existsUserAndUpsert(ObjectId oId, String field, Object value){
-        Assert.notNull(field);
-        Assert.notNull(value);
+
         MongoTemplate template = factory.getMongoTemplateByOid(oId);
 
         ////////////////upsert在有满足条件的记录存在时，不会返回新的_id，并且如果update不设置的话会删除
@@ -88,8 +85,7 @@ public class UserDAOImpl extends MongoService implements UserDAO {
     //4
     @Override
     public User getUser(ObjectId oId, String field, Object value) {
-        Assert.notNull(field);
-        Assert.notNull(value);
+
         Query query = new Query();
         MongoTemplate template = factory.getMongoTemplateByOid(oId);
         query.addCriteria(Criteria.where(field).is(value));

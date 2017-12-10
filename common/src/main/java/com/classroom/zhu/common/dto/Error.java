@@ -2,12 +2,13 @@ package com.classroom.zhu.common.dto;
 
 import com.classroom.zhu.common.exception.ErrorCode;
 import com.classroom.zhu.common.exception.ErrorCodeException;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import lombok.Data;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
+import lombok.Data;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -19,7 +20,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+
 import static com.classroom.zhu.common.exception.ErrorCode.*;
+
+
 @Data
 public class Error {
     private String request;
@@ -59,9 +64,9 @@ public class Error {
         this.params = params;
     }
 
-    private static Error handleServletRequestBindingException(ServletRequestBindingException ex){
-        return new Error("",MISS_REQUIRED_PARAMETER.getErrorCode(),ex.getMessage());
-    }
+   /* private static Error handleServletRequestBindingException(ServletRequestBindingException ex){
+       return new Error("",MISS_REQUIRED_PARAMETER.getErrorCode(),ex.getMessage());
+    }*/
 
     //BindingResult代表数据绑定的结果，继承了Errors接口。
     //BindException：代表数据绑定的异常，它继承Exception，并实现了BindingResult
@@ -90,10 +95,10 @@ public class Error {
         return  handleBindingResult(ex.getBindingResult());
     }
 
-    private static Error handleMissingServletRequestParameterException(MissingServletRequestParameterException ex){
+ /*   private static Error handleMissingServletRequestParameterException(MissingServletRequestParameterException ex){
         String parameterName = ex.getParameterName();
         return new Error(MISS_REQUIRED_PARAMETER,parameterName);
-    }
+    }*/
 
     private static Error handleHttpMessageNotReadableException(HttpMessageNotReadableException ex){
         Throwable cause = ex.getCause();
@@ -124,6 +129,7 @@ public class Error {
         }
         return new Error(PARAMETER_VALUE_INVALID,ex.getPropertyName(),value);
     }
+/*
 
 
     public static Error fromException(Exception ex) {
@@ -154,6 +160,7 @@ public class Error {
             return null;
         }
     }
+*/
 
 
 

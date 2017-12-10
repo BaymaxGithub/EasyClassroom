@@ -1,4 +1,5 @@
 package com.classroom.zhu.common.dto;
+
 public class BasicResultDTO {
     private long total;    //记录符合条件的总数
     private int cursor;    //相当于在符合条件的集合中要跳过的记录数

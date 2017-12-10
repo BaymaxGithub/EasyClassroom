@@ -1,4 +1,5 @@
 package com.classroom.zhu.common.model;
+
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -17,5 +18,4 @@ public class User {
     private Date createTime;
     private Date updateTime;
 
-    private Date repeat;  //有人重复注册时更新
 }

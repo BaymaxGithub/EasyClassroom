@@ -1,8 +1,5 @@
 package com.classroom.zhu.common.exception;
 
-/**
- * Created by 12801 on 2017/8/10.
- */
 public enum ErrorCode {
 
     //Http

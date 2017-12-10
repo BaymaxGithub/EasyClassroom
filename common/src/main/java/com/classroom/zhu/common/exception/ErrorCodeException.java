@@ -1,8 +1,5 @@
 package com.classroom.zhu.common.exception;
 import com.classroom.zhu.common.dto.Error;
-/**
- * Created by 12801 on 2017/8/10.
- */
 public class ErrorCodeException extends RuntimeException{
 
     private Error error;
