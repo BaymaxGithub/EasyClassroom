@@ -11,6 +11,7 @@ public class Collections {
     public static final String EXCEL_TEST_USER = "excel.user";
     public static final String USER_DBS = "user_dbs";
     public static final String USERS = "users";
+    public static final String CLASSROOM = "classroom";
     //
     public static final String WRITER_READER = "writerread.user";
     public static final String TOKEN = "user.token";

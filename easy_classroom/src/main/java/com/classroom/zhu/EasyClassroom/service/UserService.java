@@ -50,4 +50,13 @@ public class UserService {
     public void saveToken(ObjectId oid, TokenModel tokenModel){
         userDAO.saveToken(oid,tokenModel);
     }
+
+    //根据token获取角色
+    public String getRoleByToken( String token){
+        String[] tokens = token.split("\\*");
+        if (tokens[tokens.length-1].equals("admin")){
+            return "admin";
+        }
+        return "user";
+    }
 }

@@ -9,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Component;
 
 import static com.classroom.zhu.common.service.Collections.TOKEN;
 
 /**
  * Created by 12801 on 2017/12/10.
  */
+@Component
 public class TokenDAOImpl  extends MongoService implements TokenDAO{
     private static final Logger LOG = LoggerFactory.getLogger(TokenDAOImpl.class);
     private String tokenCollection = TOKEN;

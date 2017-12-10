@@ -25,7 +25,7 @@ import java.util.UUID;
  */
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/user")
 public class UserController {
 
     @Autowired
@@ -42,7 +42,7 @@ public class UserController {
      * 注册用户
      * 注意: 防止并发注册（最坏的情况是并发注册了同一个邮箱）
      */
-    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    @RequestMapping(value = "",method = RequestMethod.POST)
     public
     @ResponseBody
     Object registerUser(
@@ -73,11 +73,12 @@ public class UserController {
     /**
      * 用户登录
      */
-    @RequestMapping(value = "/user/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public
     @ResponseBody
     Object login(
             @RequestParam(required = true,name = "oid") ObjectId oid,
+            @RequestParam(required = false,name = "secret_key") String secret_key,
             @RequestBody LoginBean loginBean
     )throws IOException {
         if ((loginBean.getEmail() == null) || loginBean.getPassword()==null ) {
@@ -87,7 +88,11 @@ public class UserController {
             User user = userService.getUserByEmail(oid, loginBean.getEmail());
             TokenModel tokenModel = new TokenModel();
             tokenModel.setUid(user.getId());
-            tokenModel.setToken(UUID.randomUUID().toString());
+            if (secret_key!=null){
+                tokenModel.setToken(UUID.randomUUID().toString()+"*admin");
+            }else{
+                tokenModel.setToken(UUID.randomUUID().toString());
+            }
 
             userService.saveToken(oid,tokenModel);
             return new OnlyResultDTO(tokenModel);
@@ -100,7 +105,7 @@ public class UserController {
     /**
      * 删除用户
      */
-    @RequestMapping(value = "/user/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public
     @ResponseBody
     void deleteUser(
