@@ -12,10 +12,10 @@ public enum ErrorCode {
     PARAMETER_VALUE_INVALID(10017, "Parameter (%s)'s value invalid"),
     RESOURCE_ALREADY_EXISTS(20007, "Resource (%s) already exists"),
     RESOURCE_ALREADY_NOT_EXISTS(20008, "Resource (%s) not exists"),
-    REGISTER_EMAIL_NULL(20009,"email is null."),
+    REGISTER_EMAIL_NULL(20009,"{} is null."),
     EMAIL_ALREADY_EXISTS(20010,"sorry,email %s already  exists."),
     //oAuth error
-    REDIRECT_URI_MISMATCH(21322, "Redirect uri mismatch"),
+    LOGIN_FAILED(21322, "login failed.miss email or password."),
     INVALID_REQUEST(21323, "Invalid request");
     private  int errorCode;
     private  String error;

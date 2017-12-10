@@ -13,4 +13,5 @@ public class Collections {
     public static final String USERS = "users";
     //
     public static final String WRITER_READER = "writerread.user";
+    public static final String TOKEN = "user.token";
 }

@@ -1,6 +1,9 @@
 package com.classroom.zhu.EasyClassroom.dao.impl;
 
 import com.classroom.zhu.EasyClassroom.dao.UserDAO;
+import com.classroom.zhu.EasyClassroom.dto.LoginBean;
+import com.classroom.zhu.EasyClassroom.dto.UserCreateBean;
+import com.classroom.zhu.common.model.TokenModel;
 import com.classroom.zhu.common.model.User;
 import com.classroom.zhu.common.service.MongoService;
 import com.classroom.zhu.common.util.DateUtil;
@@ -17,6 +20,7 @@ import org.springframework.util.Assert;
 
 import java.util.Date;
 
+import static com.classroom.zhu.common.service.Collections.TOKEN;
 import static com.classroom.zhu.common.service.Collections.USERS;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -27,6 +31,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Component
 public class UserDAOImpl extends MongoService implements UserDAO {
     private String collectionName = USERS;
+    private String tokenCollection = TOKEN;
 
     private static final Logger LOG = LoggerFactory.getLogger(UserDAOImpl.class);
 
@@ -60,7 +65,6 @@ public class UserDAOImpl extends MongoService implements UserDAO {
         //Update update = new Update().set("repeat",new Date());
         Update update = new Update().setOnInsert("email",value);
         ObjectId tempId = (ObjectId)template.upsert(query, update, collectionName).getUpsertedId();
-        LOG.info("!!!!upsert:"+tempId);
         /////////////////
         return tempId;
     }
@@ -94,20 +98,38 @@ public class UserDAOImpl extends MongoService implements UserDAO {
     }
 
     //5
-    public void createUser2(ObjectId oid, ObjectId tempId){
+    public void createUser2(ObjectId oid, ObjectId tempId,UserCreateBean ucb){
         MongoTemplate template = factory.getMongoTemplateByOid(oid);
         Query query = Query.query(Criteria.where("_id").is(tempId));
         User user = new User(); //只需要更新时间就可以了
         user.setCreateTime(new Date(DateUtil.getUTCms()));  //获取时间戳来创建时间，0828更新Contractor的字段属性Long为Data
         user.setUpdateTime(new Date(DateUtil.getUTCms()));  //0828更新Contractor的字段属性Long为Data
-        //template.save(user, collectionName);
+        user.setPassword(ucb.getPassword());
+        user.setOid(oid);
+        user.setRoleType("user");  //注册的用户角色都是 “user”
         template.updateFirst(query, UpdateUtil.convertBeanToUpdate(user, "_id", "email"), collectionName);
-        LOG.info("!!! add Contractor ");
+        LOG.info("!!! add Contractor done.");
     }
 
     //6
     public void deleteContractorById(ObjectId oid, ObjectId upsertId){
         MongoTemplate template = factory.getMongoTemplateByOid(oid);
         template.remove(query(where("_id").is(upsertId)), collectionName);
+    }
+
+    //7
+    @Override
+    public Boolean checkUser(ObjectId oid, LoginBean loginBean){
+        MongoTemplate template = factory.getMongoTemplateByOid(oid);
+        Query query = new Query();
+        query.addCriteria(Criteria.where("email").is(loginBean.getEmail()).and("password").is(loginBean.getPassword()));
+        return template.exists(query,collectionName);
+    }
+
+    //8
+    public void saveToken(ObjectId oid, TokenModel tokenModel){
+        MongoTemplate template = factory.getMongoTemplateByOid(oid);
+        tokenModel.setTimestamp(new Date(DateUtil.getUTCms()));
+        template.save(tokenModel, tokenCollection);   //每次请求都生成新的code保存起来，不替换
     }
 }

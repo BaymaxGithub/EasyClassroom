@@ -1,6 +1,10 @@
 package com.classroom.zhu.EasyClassroom.dao;
 
+import com.classroom.zhu.EasyClassroom.dto.LoginBean;
+import com.classroom.zhu.EasyClassroom.dto.UserCreateBean;
+import com.classroom.zhu.common.model.TokenModel;
 import com.classroom.zhu.common.model.User;
+import jdk.nashorn.internal.parser.Token;
 import org.bson.types.ObjectId;
 
 /**
@@ -18,7 +22,11 @@ public interface UserDAO {
     //4
     public User getUser(ObjectId oId, String field, Object value);
     //5
-    public void createUser2(ObjectId oid, ObjectId tempId);
+    public void createUser2(ObjectId oid, ObjectId tempId,UserCreateBean ucb);
     //6
     public void deleteContractorById(ObjectId oid, ObjectId upsertId);
+    //7
+    public Boolean checkUser(ObjectId oid, LoginBean loginBean);
+    //8
+    public void saveToken(ObjectId oid, TokenModel tokenModel);
 }
