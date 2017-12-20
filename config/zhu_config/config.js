@@ -32,8 +32,7 @@ coll.update({name: 'public'}, {
 coll.update({name: 'easy_classroom'}, {
     $set: {
         config: {
-            apiServerIP: 'nginx',
-            apiServerPort: 80
+            secretKey : "HGY4YJ83EE1OMF06LHAB2N65FM09P8SZ"
         }
     }
 }, true, false);

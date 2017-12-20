@@ -47,7 +47,6 @@ subprojects{
 		compile "org.springframework.boot:spring-boot-starter-data-mongodb"
 		compile "org.springframework.boot:spring-boot-starter-data-redis"
 		compile "org.springframework.boot:spring-boot-devtools"
-
 	}
 
 	//添加一些属性到JAR包的manifest文件中

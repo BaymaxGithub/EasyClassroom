@@ -1,7 +1,9 @@
 package com.classroom.zhu.EasyClassroom.service;
 
 import com.classroom.zhu.EasyClassroom.dao.UserDAO;
+import com.classroom.zhu.EasyClassroom.dto.LoginBean;
 import com.classroom.zhu.EasyClassroom.dto.UserCreateBean;
+import com.classroom.zhu.common.model.TokenModel;
 import com.classroom.zhu.common.model.User;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +32,31 @@ public class UserService {
     }
 
     //1、注册用户
-    public void addUser2(ObjectId oId, ObjectId tempId){
-        userDAO.createUser2(oId,tempId);
+    public void addUser2(ObjectId oId, ObjectId tempId,UserCreateBean ucb){
+        userDAO.createUser2(oId,tempId,ucb);
     }
 
     //删除用户
     public void deleteContractorById(ObjectId oId, ObjectId id) {
         userDAO.deleteContractorById(oId,id);
+    }
+
+    //登录判断用户与密码是否正确
+    public Boolean checkUser(ObjectId oid,LoginBean loginBean){
+        return userDAO.checkUser(oid,loginBean);
+    }
+
+    //保存token
+    public void saveToken(ObjectId oid, TokenModel tokenModel){
+        userDAO.saveToken(oid,tokenModel);
+    }
+
+    //根据token获取角色
+    public String getRoleByToken( String token){
+        String[] tokens = token.split("\\*");
+        if (tokens[tokens.length-1].equals("admin")){
+            return "admin";
+        }
+        return "user";
     }
 }
